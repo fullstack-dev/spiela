@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Start Collaboration</ion-title>
+    </ion-navbar>
+    <ion-navbar custom-navbar>
+        <div class="navigation">
+            <div class="navigation-item" nowrap (click)="bulletinboard()">Bulletin Board</div>
+            <div class="navigation-item active" nowrap>Start Collaboration</div>
+            <div class="navigation-item" nowrap (click)="feedback()">Feedback</div>
+        </div>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form #f="ngForm" (ngSubmit)="publish(f)">
+        <ion-item>
+            <ion-label stacked>Collaboration Name</ion-label>
+            <ion-input type="text" name="collabname" ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Add Keywords</ion-label>
+            <ion-input type="text" name="keywords" ngModel required></ion-input>
+        </ion-item>
+        <!--
+        <ion-label stacked>Edit Participant Rating System</ion-label>
+
+         <ion-item>
+            <ion-label stacked>Positive</ion-label>
+            <ion-input type="text" name="posrating" ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Negative</ion-label>
+            <ion-input type="text" name="negrating" ngModel required></ion-input>
+        </ion-item> -->
+
+        <div padding>
+            <button ion-button block>Publish</button>
+        </div>
+    </form>
+</ion-content>

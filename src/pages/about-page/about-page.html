@@ -1,0 +1,104 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            About
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+<div class="about-page-text">
+	<span>
+		<p><strong>Spiela</strong> is a collaborative network empowering young people as a whole, but with a particular mission to engage those from minority backgrounds and ensure that they have a safe and supportive space in which to engage and network with others.<br></p>
+		<p>Spiela facilitates networking and conversation covering a diverse range of topics including business and employment, education, faith, culture and politics. We provide a Q&A side which gives us a more collaborative and educational aspect to what we do. We have had celebrities, activists, authors, politicans and many more speak directly with the Spiela community. This is our main feature and really what represents Spiela; real life influencers using our platform to share, motivate, engage and inspire other people. You can view some of our guests <a href="http://facebook.com/spielafanpage" target="_blank">here</a>.<br></p>
+		<p>The main goal is to create a product that provides opportunities through collaboration whilst simultaneously providing more information on various topics. We believe everyone is influential in some way so anyone is allowed to join, contribute and share their view on the platform for the world to see.</p>
+	</span>
+</div>
+    <!-- <ion-searchbar (ionInput)="loadMore(false, true)" [(ngModel)]="search">
+    </ion-searchbar>
+    <ion-card *ngIf="error">
+        <p>{{error}}</p>
+    </ion-card>
+
+    <ion-grid no-padding="">
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-6 col-md-4 col-lg-3 *ngFor="let item of collaborations">
+
+                <ion-card [class]="classNameForComments(item.commentsCount)">
+
+                    <ion-item (click)="navigateUser(item.user_id)">
+                        <ion-avatar item-start>
+                            <img [src]="item.user_image_thumb">
+                        </ion-avatar>
+                        <h2>{{item.username}}</h2>
+                        <p>{{item.createdAt|amTimeAgo}}</p>
+                    </ion-item>
+
+
+                    <img [hidden]="item.collaboration_image==''" [src]="item.collaboration_image">
+
+                    <ion-item no-margin padding-left class="spiel-count">
+
+                        <button color="light" ion-button small (click)="navigate(item.id)">
+                            Read more
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text"></ion-icon>&nbsp;
+                            {{item.spiels}} Spiel{{item.spiels!=1?'s':''}}
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text"></ion-icon>&nbsp;
+                            {{item.commentsCount}} comment{{item.commentsCount!=1?'s':''}}
+                        </button>
+                        <button item-end color="light" ion-button small icon-only
+                                (click)="presentPopover($event, item)">
+                            <ion-icon name="more"></ion-icon>
+                        </button>
+                        <button no-margin color="light" ion-button small start
+                                (click)="hideCollaboration(item.id)">Hide post
+                        </button>
+                    </ion-item>
+
+
+                    <ion-card-content no-padding margin-top margin-left>
+                        <ion-card-title>{{item.name}}</ion-card-title>
+
+                        <ion-badge margin-right margin-top *ngFor="let kw of item.keywords">{{kw.trim()}}
+                        </ion-badge>
+                    </ion-card-content>
+                    <ion-row no-padding>
+                        <ion-col>
+                            <ion-row>
+                                <button (click)="clickCollVote(1,item.id)" ion-button item-start clear small>
+                                    <ion-icon name="thumbs-up"></ion-icon>&nbsp;
+                                    {{item.vote_up}}
+                                    <div></div>
+                                </button>
+                                <button (click)="clickCollVote(-1,item.id)" ion-button item-start clear small>
+                                    <ion-icon name="thumbs-down"></ion-icon>&nbsp;
+                                    {{item.vote_down}}
+                                    <div></div>
+                                </button>
+                            </ion-row>
+                        </ion-col>
+
+
+                    </ion-row>
+
+                </ion-card>
+
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event, false)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"
+                                     loadingText="Loading more data...">
+
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+
+</ion-content>
+

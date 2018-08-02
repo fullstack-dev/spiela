@@ -1,0 +1,27 @@
+<ion-content class="main__bg" style="background-image:url(assets/img/bg.jpeg)">
+  <div class="bg__overlay">
+    <div class="logo">
+      Spiela
+    </div>
+    <p class="logo__secondary_text">Your social collaborative network.</p>
+    <div class="form-input-wrapper first-input-field">
+      <label class="form-input-lable">
+        <ion-icon name="person"></ion-icon>
+      </label>
+      <input name="username" [(ngModel)]="loginCredentials._username" class="form-input" placeholder="Username or E-Mail" type="text">
+    </div>
+    <div class="form-input-wrapper first-input-field">
+      <label class="form-input-lable">
+        <ion-icon name="lock"></ion-icon>
+      </label>
+      <input class="form-input " [(ngModel)]="loginCredentials._password" placeholder="Password" type="password" name="password">
+    </div>
+    <p text-right padding-right class="forgot_text"><a href="https://spiela.co.uk/resetting/request" style="color: #fff;">Forgot Password</a></p>
+    <button ion-button round (click)="onSubmitLogin()" color="primary" class="btn__auth">LOGIN</button>
+    <div class="bottom__action">
+      <p>Don't have an account?
+        <span [navPush]="signupPage" class="span__bottom_text">Signup</span>
+      </p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,174 @@
+page-explorer {
+    .warning {
+        border-color: #fff;
+        background-color: #fcf8e3;
+    }
+    .danger {
+        border-color: #fff;
+        background-color: #f2dede;
+    }
+
+    ion-card {
+        border: 1px solid #dedede;
+        border-bottom: 1px solid #333;
+        /*-webkit-box-shadow: 16px 16px 18px -15px rgba(0,0,0,0.75);
+        -moz-box-shadow: 16px 16px 18px -15px rgba(0,0,0,0.75);
+        box-shadow: 16px 16px 18px -15px rgba(0,0,0,0.75);*/
+        margin: 9px;
+        position: relative;
+        &.comm-gt-50 ion-item:first-child {
+            background: #f1d99e;
+        }
+        &.comm-gt-100 ion-item:first-child {
+            background: rgba(220, 28, 28, 0.62);
+        }
+        ion-item {
+            //background: none !important;
+        }
+    }
+  
+//*****************************************************
+.item-md.item-block .item-inner {
+    border: 0;
+}
+
+.explorerResults .col-details {
+    ion-col {
+        text-align: center;
+        h4,
+        p {
+            text-align: center;
+        }
+    }
+}
+.explorerResults .spiel-count {
+    font-size: 0.8em;
+    margin-top: -40px; //margin-left: 7px;
+    position: absolute; //left: ;
+    button {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 7px;
+        font-size: 1em;
+        color: #fff;
+    }
+}
+
+
+img[hidden]+.spiel-count {
+    margin-top: -1px !important;
+    &+ion-card-content {
+        margin-top: 60px;
+    }
+} //}
+ion-badge[margin-top] {
+    margin-top: 5px;
+}
+ion-badge[margin-right] {
+    margin-right: 5px !important;
+}
+
+
+    //******************
+
+
+    
+.searchbar-md .searchbar-input {
+    padding: 15px 75px;
+    border-radius: 2px;
+    background-position: left 8px center;
+    height: auto;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 3rem;
+    color: #141414;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.searchbar-input {
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-family: inherit;
+}
+
+.searchbar-md .searchbar-search-icon, .searchbar-md .searchbar-md-cancel {
+    position: absolute;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.searchbar-md .searchbar-search-icon {
+    left: 16px;
+    top: 11px;
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='%235b5b5b'%20d='M337.509,305.372h-17.501l-6.571-5.486c20.791-25.232,33.922-57.054,33.922-93.257C347.358,127.632,283.896,64,205.135,64C127.452,64,64,127.632,64,206.629s63.452,142.628,142.225,142.628c35.011,0,67.831-13.167,92.991-34.008l6.561,5.487v17.551L415.18,448L448,415.086L337.509,305.372z%20M206.225,305.372c-54.702,0-98.463-43.887-98.463-98.743c0-54.858,43.761-98.742,98.463-98.742c54.7,0,98.462,43.884,98.462,98.742C304.687,261.485,260.925,305.372,206.225,305.372z'/></svg>");
+    width: 51px;
+    height: 51px; 
+    background-size: (40px, 40px);
+    padding-right: 50px;
+    margin-right: 50px;
+}
+ 
+
+
+.searchResults  .item-md ion-avatar img.search-result-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+     
+}
+.searchResults .item-md.item-block .item-inner {
+    padding-right: 8px;
+   /* border-bottom: 1px solid #333;*/
+     
+}
+ion-item.ionitemlighter .card-title
+{
+    font-size: 12px;
+    font-weight: bold;
+     
+}
+.ionitemlighter .item-inner 
+{
+   border-bottom: 1px solid #ccc !important;
+    
+}
+ 
+.searchResults small-md {
+    height: 2.1em;
+    font-size: 0.5rem !important;
+    padding: 0 0.9em;
+}
+.searchResults .label
+{
+    width: 100% !important;
+     
+    /*background: #f00;*/
+}
+.searchResults .card-title
+{
+     
+     /*background: #0f0;
+    height: 200px !important;
+    overflow: none;
+    overflow-wrap: break-word !important;
+    width:auto !important; display:inline !important; */
+    font-size: 15px !important;
+}
+
+.searchResults ion-card {
+    border-bottom: 2px solid #222;
+}
+
+}
+
+page-explorer .explorerResults .spiel-count button {
+   font-size: 0.9em;
+
+}

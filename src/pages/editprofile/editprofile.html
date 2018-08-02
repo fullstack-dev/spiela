@@ -1,0 +1,67 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Edit Profile</ion-title>
+       
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        <ion-item><ion-avatar item-start>
+                <img (click)="editPicture()" [src]="profileImg" style="float: left;">
+        </ion-avatar><h1 style="float: left; margin-top: 3px;">{{username}}</h1>
+        <button  ion-button icon-start (click)="saveProfile()" style="float: right; width: 100px;">Save</button>
+    </ion-item><br />
+       <!-- <div class="form-input-wrapper first-input-field">
+                <label class="form-input-lable">
+                  <ion-icon name="person"></ion-icon>
+                </label>
+             
+                <input class="form-input" [(ngModel)]="username" placeholder="Username" type="text" name="">
+              </div>-->
+              <div class="form-input-wrapper first-input-field">
+                    <label class="form-input-lable">
+                        <ion-icon name="person"></ion-icon>
+                    </label>
+                    <input class="form-input" [(ngModel)]="fullname" required placeholder="Full Name" type="text" name="">
+                    </div>
+              <div class="form-input-wrapper first-input-field">
+            <label class="form-input-lable">
+                <ion-icon name="mail"></ion-icon>
+            </label>
+            <input class="form-input" [(ngModel)]="email" required placeholder="Email" type="text" name="">
+            </div>
+            <div class="form-input-wrapper first-input-field">
+                <label class="form-input-lable">
+                    <ion-icon name="quote" style=" transform: scaleX(-1);
+                    -moz-transform: scaleX(-1);
+                    -webkit-transform: scaleX(-1);
+                    -ms-transform: scaleX(-1); vertical-align: top;" ></ion-icon>
+                </label>
+                
+                <ion-item item-end style="background: #fff;"> 
+                <ion-textarea style="background: #fff;" item-end placeholder="Bio" #content required [(ngModel)]="bio" autoresize newline [attr.rows]="3"></ion-textarea>
+            </ion-item>
+                </div>
+                <div class="form-input-wrapper first-input-field">
+                        <label class="form-input-lable">
+                                <ion-icon name="flag"></ion-icon>
+                        </label>
+                        <input class="form-input" [(ngModel)]="website" placeholder="URL (Optional)" type="text" name="">
+                        </div>
+      <div class="form-input-wrapper first-input-field">
+      <ion-item>
+            <ion-label>Type <span >{{user.personType}}</span></ion-label>
+            <ion-select [(ngModel)]="user.personType" (ionChange)="onChange()">
+                <ion-option value="activist">Activist</ion-option>
+                <ion-option value="neutral">Neutral</ion-option>
+                <ion-option value="radical">Radical</ion-option>
+                <ion-option value="intellectual">Intellectual</ion-option>
+                <ion-option value="observer">Observer</ion-option>
+                <ion-option value="other">Other</ion-option>
+            </ion-select>
+        </ion-item>
+    </div>
+</ion-content>

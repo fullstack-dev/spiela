@@ -1,0 +1,144 @@
+<!--
+  Generated template for the Collaboration page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+    <ion-navbar>
+        <ion-title>Collaboration</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="presentPopover($event)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class='selectable'>
+
+    <ion-card>
+        <ion-card-content>  
+            <img (click)="bookmark(collaboration)" src="{{bookmarkimage}}" style='height: 40px; width: 40px; float: right;'>
+            <h2 *ngIf="collaboration.user" class="small">
+                @{{collaboration.user.username}}'s Canvas
+            </h2>
+            <h1>{{collaboration.name}}</h1> 
+            <button ion-button (click)="navigateUser(collaboration.user.id)">Author</button>
+        </ion-card-content>
+
+     
+        <!-- </ion-card>-->
+
+        <div *ngFor="let spiel of collaboration.spiels">
+            <ion-item (click)="navigateUser(collaboration.user.id)">
+                <ion-avatar item-start>
+                    <img src="{{collaboration.user.userImage_url}}">
+                </ion-avatar><h2>{{collaboration.user.username}}</h2>
+               
+               
+                <p>{{spiel.createdAt|amTimeAgo}}</p>
+               
+           
+            </ion-item>
+              <!-- removed (click)="viewTheImage(collaboration.id)" and replace it with imageViewer-->
+            <img (click)="viewTheImage(collaboration.id)" *ngIf="getRightImage(spiel.image, spiel.image_url)"  [src]="getRightImage(spiel.image, spiel.image_url)">
+
+            <ion-card-content appMentionable [innerHTML]="spiel.content|newline|urlify"  ></ion-card-content>
+       
+
+            <ion-row>
+           
+
+                <ion-col center text-center>
+                   <!-- <ion-note>
+                        {{spiel.createdAt|amTimeAgo}}
+                    </ion-note>-->
+                </ion-col>
+                <ion-col [hidden]="showComment(collaboration.user.username)" text-center>
+                    <button class="custom-icon" (click)="deleteSpiel(spiel.id)" ion-button no-padding small clear small>
+                        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+                    </button>
+                </ion-col>
+
+
+            </ion-row>
+
+        </div>
+        <ion-row>
+            <ion-col no-padding>
+                <button ion-button icon-start clear small>
+                    <ion-icon name="text"></ion-icon>
+                    <div *ngIf="collaboration.commentsCount!=1">{{collaboration.commentsCount}} Comments</div>
+                    <div *ngIf="collaboration.commentsCount==1">1 Comment</div>
+                </button>
+            </ion-col>
+           <!-- <ion-col center text-center no-padding small>
+                <ion-note small>
+                    {{collaboration.createdAt|amTimeAgo}}
+                </ion-note>
+            </ion-col>-->
+        </ion-row>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+                <ion-item>
+            <ion-textarea  [attr.rows]="3" appMentionable (tags)="reloadTags($event)" autoresize placeholder="Add your comment" [(ngModel)]="newComment" #mentionableInput>
+
+            </ion-textarea>  </ion-item>
+            <ion-badge (click)="selectUserTag(tag, mentionableInput)" class="" *ngFor="let tag of usertags">@{{tag}}
+            </ion-badge>
+            <br *ngIf="usertags.length">
+            <button ion-button (click)="addComment(collaboration)">Send</button>
+       
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngFor="let comm of collaboration.comments">
+        <ion-item (click)="navigateUser(comm.user.id)" >
+            <ion-avatar item-start>
+                <img src="{{comm.user.userImage_url}}">
+            </ion-avatar>
+            <h2>{{comm.user.username}}</h2>
+            <p>{{comm.createdAt|date}}</p>
+        </ion-item>
+        <ion-card-content appMentionable [innerHTML]="comm.content|newline|urlify">
+
+        </ion-card-content>
+
+        <ion-row>
+            <!-- <ion-col>
+                <button (click)="clickCommentVote(1,comm.id)" ion-button icon-start clear small>
+                    <ion-icon name="thumbs-up"></ion-icon>
+                    {{comm.likes_pos}}
+                    <div></div>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button (click)="clickCommentVote(-1,comm.id)" ion-button icon-start clear small>
+                    <ion-icon name="thumbs-down"></ion-icon>
+                    {{comm.likes_neg}}
+                    <div></div>
+                </button>
+            </ion-col> -->
+            <ion-col center text-center>
+                <ion-note>
+                    {{comm.createdAt|amTimeAgo}}
+                </ion-note>
+            </ion-col>
+            <ion-col text-center [hidden]="!showComment(comm.user.username)">
+                <button (click)="reportAPost('comment',comm.id)" ion-button no-padding small clear small>
+                    <ion-icon name="information-circle"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col text-center [hidden]="showComment(comm.user.username)">
+                <button class="custom-icon" (click)="deleteComment(comm.id)" ion-button no-padding small clear small>
+                    <ion-icon ios="ios-close" md="md-close"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+
+</ion-content>

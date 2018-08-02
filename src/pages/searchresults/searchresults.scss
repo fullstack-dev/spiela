@@ -1,0 +1,44 @@
+page-searchresults {
+
+
+.item-md ion-avatar img.search-result-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+}
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: 1px solid #333;
+}
+ion-item.ionitemlighter .card-title
+{
+    font-size: 12px;
+    font-weight: bold;
+}
+ion-item.ionitemlighter  .item-inner 
+{
+   border-bottom: 1px solid #ccc !important;
+}
+ 
+small-md {
+    height: 2.1em;
+    font-size: 0.5rem !important;
+    padding: 0 0.9em;
+}
+.label
+{
+    width: 100% !important;
+    /*background: #f00;*/
+}
+.card-title
+{
+     
+   /* background: #0f0;
+    height: 200px !important;
+    overflow: none;
+    overflow-wrap: break-word !important;
+    width:auto !important; display:inline !important;*/
+    font-size: 15px !important;
+}
+}

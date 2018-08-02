@@ -1,0 +1,14 @@
+version: '2'
+services:
+    spiela_app:
+        image: agileek/ionic-framework
+        container_name: spiela_app
+        entrypoint: '/entrypoint.sh'
+        volumes:
+            - ./:/myApp
+            - ./docker/entrypoint.sh:/entrypoint.sh:ro
+            - ./docker/config.prod.json:/myApp/src/app/config.json:ro
+        ports:
+            - "8100:8100"
+            - "35729:35729"
+

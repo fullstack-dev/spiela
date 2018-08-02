@@ -1,0 +1,11 @@
+<ion-list no-margin>
+    <button small *ngIf="buttons.delCol" ion-item color="danger" (click)="close('delCol')">Delete Collaboration</button>
+    <button small *ngIf="buttons.hideCol" ion-item (click)="close('hideCol')">Hide collaboration</button>
+    <button small *ngIf="buttons.addSpiel" ion-item (click)="close('addSpiel')">Add to canvas</button>
+    <button small *ngIf="buttons.delSpiel" ion-item (click)="close('delSpiel')">Delete Post</button>
+    <button small *ngIf="buttons.reportCol" ion-item (click)="close('reportCol')">Report collaboration</button>
+    <button small *ngIf="buttons.delComment" ion-item (click)="close('delComment')">Delete comment</button>
+    <button small *ngIf="buttons.hideComment" ion-item (click)="close('hideComment')">Hide comment</button>
+    <button small *ngIf="buttons.reportComment" ion-item (click)="close('reportComment')">report comment</button>
+    <button small *ngIf="buttons.shareCol" ion-item (click)="close('shareCol')">share via</button>
+</ion-list>

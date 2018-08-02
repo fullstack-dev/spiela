@@ -1,0 +1,6 @@
+{
+  "API_URL": "https://spiela.co.uk/api/",
+  "LOGIN_URL": "https://spiela.co.uk/api/login_check",
+  "SIGNUP_URL": "https://spiela.co.uk/users",
+  "CDN_URL": "//spiela.co.uk/"
+}

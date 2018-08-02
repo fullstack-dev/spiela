@@ -1,0 +1,189 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>User</ion-title>
+        <ion-buttons *ngIf="myProfile" end>
+            <button ion-button icon-only (click)="presentPopover($event)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item *ngIf="userSaved" style="background: rgba(254, 179, 179, 0.5);" class="fadeOut animated">
+        <h2 style="margin-top: 5px;">Profile Changes have been saved</h2>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <img [src]="profileImg" (click)="editPicture(user)">
+        </ion-avatar>
+        <button *ngIf="myProfile" ion-button icon-start (click)="editProfile(user)" style="float: right;">Edit Profile</button>
+        <h2 [ngClass]="{'showquill': (user.id <= 400)}">{{user.username}}</h2>
+
+       
+
+
+        <div item-end *ngIf="!myProfile && supportEnabled">
+            <button ion-button (click)="support(user.id)">Support</button>
+        </div>
+        <div item-end *ngIf="!myProfile && !supportEnabled">
+            <button ion-button style="background: #ddd; color: #aaa;">Supporting</button>
+        </div>
+        <br /><p>{{user.fullName}} </p>
+    </ion-item>
+<ion-item *ngIf="user.website"><ion-label><span><a [href]='getWebURL()'>{{user.website}}</a></span></ion-label></ion-item>
+    <ion-item>
+        <ion-label>Type <span [hidden]="myProfile">{{user.personType}}</span></ion-label>
+        <ion-select [hidden]="!myProfile" [(ngModel)]="user.personType" (ionChange)="onChange()">
+            <ion-option value="activist">Activist</ion-option>
+            <ion-option value="neutral">Neutral</ion-option>
+            <ion-option value="radical">Radical</ion-option>
+            <ion-option value="intellectual">Intellectual</ion-option>
+            <ion-option value="observer">Observer</ion-option>
+            <ion-option value="other">Other</ion-option>
+        </ion-select>
+    </ion-item>
+    <div class="bio" [innerHTML]="user.bio|newline"></div>
+    <ion-item>
+        <ion-row class="col-details">
+            <ion-col no-padding class="profile_number">
+                <h4>{{user_supporting}}</h4>
+                <p>SUPPORTING</p>
+            </ion-col>
+            <ion-col no-padding class="profile_number">
+                <h4>{{user_likes}}</h4>
+                <p>SUPPORTERS</p>
+            </ion-col>
+            <ion-col no-padding class="profile_number">
+                <h4>{{user_collaborations}}</h4>
+                <p>COLLABORATIONS</p>
+            </ion-col>
+            <ion-col [hidden]="myProfile" id="buttons" no-padding>
+                <button (click)="reportAPost(user.id)" ion-button icon-end clear small>
+                    <ion-icon name="information-circle"></ion-icon>
+                </button>
+                <button *ngIf="myownUserId != user.id" class="custom-icon" (click)="blockUser(user.id)" ion-button icon-end clear small>
+                    <ion-icon ios="ios-remove-circle" md="md-remove-circle"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+
+    <!--<button *ngIf="myProfile" ion-button icon-start (click)="presentActionSheet()">
+        <ion-icon name="camera"></ion-icon>
+        Change Display Picture
+    </button>
+
+    <button *ngIf="myProfile" ion-button (click)="navigateTomyCol()">My Collaborations</button>-->
+    <button *ngIf="myProfile" ion-button (click)="logout()">Logout</button>
+    <button *ngIf="myProfile" ion-button (click)="gotoIntro()">Tutorial</button>
+    <button *ngIf="myProfile" ion-button (click)="gotoBookmarks(user)">Bookmarked</button>
+    
+  <!-- ***************************************************** WARNING: Ionic bug - you cannot put ngIf inside ion-segment-button ************************* -->
+    <ion-toolbar no-border-top margin-top toolbar-sm *ngIf="! myProfile" class="userspacing">
+        <ion-segment [(ngModel)]="activeTab">
+            <ion-segment-button value="activity">
+                Latest Activity
+            </ion-segment-button>
+            <ion-segment-button value="supporting">
+                Supporting
+            </ion-segment-button>
+            <ion-segment-button value="supporters">
+                Supporters
+            </ion-segment-button>
+            
+      </ion-segment>
+    </ion-toolbar>
+ <!-- ***************************************************** WARNING: Ionic bug - you cannot put ngIf inside ion-segment-button ************************* -->
+    <ion-toolbar no-border-top margin-top toolbar-sm *ngIf="myProfile">
+        <ion-segment [(ngModel)]="activeTab">
+            <ion-segment-button value="activity">
+                Latest Activity
+            </ion-segment-button>
+            <ion-segment-button value="supporting">
+                Supporting
+            </ion-segment-button>
+            <ion-segment-button value="supporters">
+                Supporters
+            </ion-segment-button>
+            
+            <ion-segment-button  value="blocked1">
+                Blocked content
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+
+    <div *ngIf="activeTab=='activity'" padding-top>
+
+        <h3 *ngIf="profile.activity">Latest Activity</h3>
+
+        <ion-item *ngFor="let notification of (profile.activity ? profile.activity.slice(0,30): [])" class="warptext">
+            <div *ngIf="notification.type=='userSupported'">
+                <h4>{{notification.createdAt|amTimeAgo}}</h4>
+                <p>
+                    <a (click)="navigateUser(user.id)">{{user.printName}}</a>
+                     supported user 
+                    <a (click)="navigateUser(notification.user.id)">{{notification.user.printName}}</a>
+                </p>
+            </div>
+            <div *ngIf="notification.type=='collaboration'" (click)="navigateColl(notification.collaboration.id)">
+                <h4>{{notification.createdAt|amTimeAgo}}</h4>
+                <p> {{user.printName}} created a board <strong>{{notification.collaboration.name}}</strong> </p>
+            </div>
+            <div *ngIf="notification.type=='comment'" (click)="navigateColl(notification.comment.collaboration.id)">
+                <h4>{{notification.createdAt|amTimeAgo}}</h4>
+                <p> {{user.printName}} commented on <strong>{{notification.comment.collaboration.name}}</strong> </p>
+            </div>
+            <div *ngIf="notification.type=='mention'" (click)="navigateColl(notification.comment.collaboration.id)">
+                <h4>{{notification.createdAt|amTimeAgo}}</h4>
+                <p class="activity mentioned">@{{notification.userMention.username}} mentioned @{{notification.user.username}} in a comment:</p>
+                <p><strong>{{notification.comment.content}}</strong></p>
+                <p>on collaboration: <strong>{{notification.comment.collaboration.name}}</strong></p>
+            </div>
+        </ion-item>
+
+        <!-- <ion-infinite-scroll (ionInfinite)="loadMoreActivities($event,  false)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll> -->
+    </div>
+
+
+    <div *ngIf="activeTab=='supporting'" padding-top>
+        <h3>{{supportingT}}</h3>
+
+        <ion-item *ngFor="let bitem of supporting" class="warptext" (click)="navigateUser(bitem.id)">
+                <img [src] = "getProfilePic(bitem)" class='supportThumb' />
+            {{bitem.printName}}
+            <small>{{bitem.username}}</small>
+        </ion-item>
+    </div>
+
+    <div *ngIf="activeTab=='supporters'" padding-top>
+        <h3>{{supportersT}}</h3>
+
+        <ion-item *ngFor="let bitem of supporters" class="warptext" (click)="navigateUser(bitem.id)">
+            <img [src] = "getProfilePic(bitem)" class='supportThumb' />
+            {{bitem.printName}}
+            <small>{{bitem.username}}</small>
+        </ion-item>
+    </div>
+
+
+    <div *ngIf="activeTab=='blocked1'" padding-top>
+        <h3>My blocked content
+            <ion-icon (click)="loadUserHiddenContent()" name="refresh"></ion-icon>
+        </h3>
+
+        <ion-item *ngFor="let bitem of blocked" class="warptext">
+                
+            <button ion-button (click)="unblockItem(bitem.id)">remove</button>
+            {{bitem.text}}
+        </ion-item>
+    </div>
+</ion-content>

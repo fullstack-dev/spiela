@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Bulletin Board</ion-title>
+    </ion-navbar>
+    <ion-navbar custom-navbar>
+        <div class="navigation">
+            <div class="navigation-item active" nowrap>Bulletin Board</div>
+            <div class="navigation-item" nowrap (click)="startacollab()">Start Collaboration</div>
+            <div class="navigation-item" nowrap (click)="feedback()">Feedback</div>
+        </div>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngFor="let item of (data ? data.slice(0,20): [])">
+        <ion-card>
+            <ion-card-content>
+                <ion-col col-2 col-xs-2 no-padding>
+                    <ion-item>
+                        <ion-avatar item-start [ngSwitch]="item.type">
+                            <img *ngSwitchCase="'mention'"
+                                src="{{item.userMention.userImage ? 'https://spiela.co.uk/media/cache/avatar/uploads/' + item.userMention.userImage : '../../assets/img/profile-image.png'}}">
+                            <img *ngSwitchCase="'invitation'"
+                                src="{{item.user.userImage ? 'https://spiela.co.uk/media/cache/avatar/uploads/' + item.user.userImage : '../../assets/img/profile-image.png'}}">
+                        </ion-avatar>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col col-10>
+                    <ion-item text-wrap [ngSwitch]="item.type">
+                        <div *ngSwitchCase="'mention'">
+                            <span (click)="navigateUser(item.userMention.id)">
+                                {{item.userMention.printName}}
+                            </span>
+                            mentioned you in a comment on
+                            <span (click)="navigateToColl(item.collaboration.id)" *ngIf="item.collaboration">
+                                {{item.collaboration.name ? item.collaboration.name : "Unknown"}}
+                            </span>
+                            <br><br><h2>“{{showShowWords(item.comment.content)}}”</h2>
+                        </div>
+                        <div *ngSwitchCase="'invitation'">
+                            <span (click)="navigateUser(item.user.id)">
+                                {{ item.user.printName }}
+                            </span>
+                            invited you to participate in their collaboration
+                            <span (click)="navigateToColl(item.collaboration.id)" *ngIf="item.collaboration" >
+                                {{ item.collaboration.name }}.
+                            </span>
+                        </div>
+                        <br>{{item.createdAt|amTimeAgo}}.
+                    </ion-item>
+                </ion-col>
+            </ion-card-content>
+        </ion-card>
+    </div></ion-content>

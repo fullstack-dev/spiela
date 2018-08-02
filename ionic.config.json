@@ -1,0 +1,8 @@
+{
+  "name": "spiela",
+  "app_id": "67d7d36a",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

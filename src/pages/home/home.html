@@ -1,0 +1,143 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>
+            <div class="top-navigation">
+                <div class="title-img">
+                    <img src="assets/img/logo.png">
+                </div>
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-navbar *ngIf="auth.authenticated()">
+        <div class="navigation">
+            <div class="navigation-item" [ngClass]="{ 'has-notifications': countNotifications > 0 }" nowrap
+                 (click)="bulletinboard()">Bulletin Board
+                <div class="notification" *ngIf="countNotifications > 0">{{ countNotifications }}</div>
+            </div>
+            <div class="navigation-item" nowrap (click)="startacollab()">Start Collaboration</div>
+            <div class="navigation-item" nowrap (click)="feedback()">Feedback</div>
+        </div>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding home-content>
+<!--
+    <button ion-button tooltip="I'm a tooltip below a button" positionV="bottom" nextButton="1" arrow>
+        Press me to see a tooltip
+      </button>
+    -->
+    <!-- <h2>Welcome to Spiela!</h2>
+    <p>Got something to say but need support?</p>
+    <p>Nervous about expressing yourself without any kind of guidance?</p>
+    <p>We got you!</p>
+     -->
+
+    <div *ngIf="auth.authenticated()">
+        <!-- <button ion-button (click)="navigate()">Explore Collaborations</button>
+        <button ion-button (click)="startacollab()">Start a Collaboration</button>
+        <button ion-button (click)="bulletinboard()">Bulletin Board</button>
+        <button ion-button (click)="feedback()">Feedback</button>
+        <button ion-button (click)="auth.logout()">Logout</button> -->
+        <div class="menu-items">
+            <div class="row">
+                <div class="item-wrap">
+                    <div class="item influencers" (click)="navigateToCollaborations('influencers')">
+                        <div class="img"><img src="assets/img/influencers.png"></div>
+                        <div class="title" nowrap>Spiela Influencers</div>
+                    </div>
+                </div>
+                <div class="item-wrap">
+                    <div class="item topic" (click)="navigateToCollaborations('hot')">
+                        <div class="img"><img src="assets/img/hot.png"></div>
+                        <div class="title" nowrap>Hot Topic</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item-wrap">
+                    <div class="item partners" (click)="navigateToCollaborations('partners')">
+                        <div class="img"><img src="assets/img/partners.png"></div>
+                        <div class="title" nowrap>Spiela Partners</div>
+                    </div>
+                </div>
+                <div class="item-wrap">
+                    <div class="item community" (click)="navigateToCollaborations('community')">
+                        <div class="img"><img src="assets/img/comunity.png"></div>
+                        <div class="title" nowrap>Community</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item-wrap">
+                    <div class="item events" (click)="navigateToCollaborations('events')">
+                        <div class="img"><img src="assets/img/events.png"></div>
+                        <div class="title" nowrap>Spiela Events</div>
+                    </div>
+                </div>
+                <div class="item-wrap">
+                    <div class="item about" (click)="navigateToAbout()">
+                        <div class="img"><img src="assets/img/about.png"></div>
+                        <div class="title" nowrap>About</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="!auth.authenticated()" padding>
+        <ion-segment [(ngModel)]="authType">
+            <ion-segment-button class="text-dark important" value="login">
+                Login
+            </ion-segment-button>
+            <ion-segment-button class="text-dark important" value="signup">
+                Signup
+            </ion-segment-button>
+        </ion-segment> -->
+
+
+        <!-- <div [ngSwitch]="authType">
+            <form *ngSwitchCase="'login'" #loginCreds="ngForm" (ngSubmit)="auth.login(loginCreds.value)">
+                <ion-item>
+                    <ion-input name="_username" ngModel placeholder="Username or Email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input name="_password" type="password" ngModel placeholder="Password"></ion-input>
+                </ion-item>
+
+                <div padding>
+                    <button ion-button type="submit">Login</button>
+                    <a href="https://spiela.co.uk/resetting/request">Forgot Password</a>
+                    <button (click)="facebookSignIn()">Login with FB</button>
+                </div>
+                <button *ngIf="false" ion-button type="button" (click)="fblogin()">FB</button>
+            </form>
+
+            <form *ngSwitchCase="'signup'" #signupCreds="ngForm" (ngSubmit)="auth.signup(signupCreds.value)">
+                <ion-item>
+                    <ion-input ngModel name="_username" placeholder="Spiela username"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="email" ngModel name="_email" placeholder="Email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="password" ngModel name="_password" placeholder="Password"></ion-input>
+                </ion-item>
+
+                <div padding>
+                    <ion-checkbox [(ngModel)]="_accept.checked" name="_accept"></ion-checkbox>
+                    By registering you understand the <a (click)="showModal('terms')"><strong>terms and
+                    conditions,</strong></a> <a (click)="showModal('policy')"><strong>privacy policy</strong></a> and
+                    agree to the
+                    <a (click)="showModal('community')"> <strong> Spiela community rules</strong></a>
+                </div>
+
+                <div padding>
+                    <button ion-button type="submit">Signup</button>
+                </div>
+
+            </form>
+        </div>
+    </div> -->
+ 
+</ion-content>

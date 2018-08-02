@@ -1,0 +1,82 @@
+page-user {
+  .user.contributor {
+    content: '';
+    width: 1em;
+    height: 1em;
+  }
+  .showquill:after {
+    top: 10px;
+    content: '';
+    position: absolute;
+    background-image: url('../assets/img/golden_quill.png');
+    width: 1em;
+    height: 1em;
+    margin-left: 4px;
+    background-size: 0.85em;
+    background-repeat: no-repeat;
+  }
+  
+  .profile_number {
+    text-align: center;
+  }
+
+  h4 {
+    margin-top: 0px !important;
+  }
+
+  .bio {
+    display: inline-block;
+    color: #666;
+    border-bottom: 1px solid #dedede;
+    padding: 15px;
+    background: #eee;
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+    overflow:hidden;
+    display: inline-block;
+  }
+
+  .activity.mentioned {
+    white-space: normal;
+    height: 32px;
+    overflow: hidden;
+  }
+}
+
+.supportThumb
+{
+  border-radius: 50%;
+  height: 40px;
+}
+
+
+.animated {
+  /*background-color: green;
+  background-position: left top;
+  padding-top:95px;
+  margin-bottom:60px;*/
+  -webkit-animation-duration: 10s;animation-duration: 10s;
+  -webkit-animation-fill-mode: both;animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {opacity: 1; display: block; }
+  100% {opacity: 0; display: none; }
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1; display: block; }
+  100% {opacity: 0;display: none;  }
+  
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+.item-md p 
+  {
+   font-size: 1.2rem;
+  }

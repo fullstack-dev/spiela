@@ -1,0 +1,46 @@
+@import "./ionic.globals";
+$ionicons-font-path: "../assets/fonts";
+
+@import "ionicons";
+
+
+// Dark Theme
+// ----------------------------------
+
+$colors: (
+
+        primary:    #007d7d,
+        secondary:  #32db64,
+        danger:     #d91e18,
+        light:      #eee,
+        grey:      #e1e1e1,
+        dark:       #222,
+
+) !default;
+
+
+$text-color:                 #000 !default;
+$link-color:                 color($colors, light) !default;
+$background-color:           #f3f3f3 !default;
+$subdued-text-color:         #eee !default;
+
+$font-family-base:           -apple-system, "Helvetica Neue", "Roboto", sans-serif !default;
+$font-size-base:             1.4rem !default; // 1.4rem == 14px
+
+$content-padding:            16px !default;
+$content-margin:             16px !default;
+
+$toolbar-background:         #007d7d !default;
+$toolbar-border-color:       #006d6d !default;
+$toolbar-text-color:         $text-color !default;
+$toolbar-active-color:       $link-color !default;
+$toolbar-inactive-color:     #8c8c8c !default;
+
+$tabs-background:            #007d7d !default;
+$tabs-border-color:          #222 !default;
+$tabs-tab-color-inactive:    color($colors, grey) !default;
+$tabs-tab-color-active:      $link-color !default;
+
+$list-text-color:            $text-color !default;
+$list-background-color:      #eee !default;
+$list-border-color:          #000 !default;

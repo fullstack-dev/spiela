@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Report</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <!--<form >-->
+    <!--[formGroup]="report" (ngSubmit)="save(myForm.value, myForm.valid)"-->
+    <!--<input type="text" (keyup.enter)="login()" class="form-control userLog" [(ngModel)]="model.username" placeholder="User email">-->
+    <!-- We'll add our form controls here -->
+    <!--   
+    <button type="submit">Submit</button>
+
+    </form>-->
+    <form>
+
+
+        <ion-list padding>
+            <h5>Please fill out our report form for content you deem offensive. We endeavour to resolve your issue within the
+                next 24 hours. Thank you</h5>
+            <ion-item no-padding>
+                <ion-input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Your Name" fixed></ion-input>
+            </ion-item>
+            <br>
+            <ion-item no-padding>
+                <ion-input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Your E-mail" fixed></ion-input>
+            </ion-item>
+            <br>
+            <ion-item no-padding>
+                <ion-textarea rows="4" cols="45" [ngModelOptions]="{standalone: true}" [(ngModel)]="description" placeholder="Report Here"></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <br>
+        <!--<ion-row>
+             <ion-col text-center> 
+                 <textarea rows="4" cols="45" placeholder="Please Type Your Report Here"></textarea>
+             </ion-col>
+        </ion-row>-->
+        <ion-row>
+            <ion-col text-right>
+                <input ion-button full type="button" (click)="sendReport()" value="Send">
+            </ion-col>
+            <ion-col text-left>
+                <input ion-button full type="button" (click)="dismiss()" value="Close">
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>

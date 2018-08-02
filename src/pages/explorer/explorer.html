@@ -1,0 +1,143 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="search == ''">
+            {{key | capitalizeFirst}}
+        </ion-title>
+        <ion-title *ngIf="search != ''">
+            Search Results
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar  (ionInput)="loadMore(false, true)" [(ngModel)]="search">
+    </ion-searchbar>
+    <ion-card *ngIf="error">
+        <p>{{error}}</p>
+    </ion-card>
+
+    <ion-grid no-padding="">
+        <ion-row *ngIf="search == ''" class="explorerResults">
+            <ion-col no-padding col-12 col-sm-6 col-md-4 col-lg-3 *ngFor="let item of collaborations">
+                <ion-card [class]="classNameForComments(item.commentsCount)" *ngIf="filterByItem(item)">
+                    <ion-item (click)="navigateUser(item.user_id)">
+                        <ion-avatar item-start>
+                            <img [src]="choose_image(item.user_image_thumb)">
+                        </ion-avatar>
+                        <h2>{{item.username}}</h2>
+                        <p>{{item.createdAt|amTimeAgo}}</p>
+                    </ion-item>
+                    
+                     <img [hidden]="item.collaboration_image==''" [src]="getRightExplorer(item)"  (click)="viewTheImage(item.id)">
+                    <ion-item no-margin padding-left class="spiel-count">
+                        <button color="light" ion-button small (click)="navigate(item.id)">
+                            Read more
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text"></ion-icon>&nbsp; {{item.spiels}}
+                            Spiel{{item.spiels!=1?'s':''}}
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text"></ion-icon>&nbsp; {{item.commentsCount}}
+                            comment{{item.commentsCount!=1?'s':''}}
+                        </button>
+                        <button item-end color="light" ion-button small icon-only
+                                (click)="presentPopover($event, item)">
+                            <ion-icon name="more"></ion-icon>
+                        </button>
+                        <!--<button no-margin color="light" ion-button small start
+                                (click)="hideCollaboration(item.id)">Hide post
+                        </button>-->
+                    </ion-item>
+
+
+                    <ion-card-content padding-bottom margin-top margin-left>
+                        <ion-card-title>{{item.name}}</ion-card-title>
+
+                        <ion-badge style="margin-top: 30px" margin-right margin-top
+                                   *ngFor="let kw of item.keywords">{{kw.trim()}}
+                        </ion-badge>
+                    </ion-card-content>
+                    <!-- <ion-row no-padding>
+                        <ion-col>
+                            <ion-row>
+                                <button (click)="clickCollVote(1,item.id)" ion-button item-start clear small>
+                                    <ion-icon name="thumbs-up"></ion-icon>&nbsp; {{item.vote_up}}
+                                    <div></div>
+                                </button>
+                                <button (click)="clickCollVote(-1,item.id)" ion-button item-start clear small>
+                                    <ion-icon name="thumbs-down"></ion-icon>&nbsp; {{item.vote_down}}
+                                    <div></div>
+                                </button>
+                            </ion-row>
+                        </ion-col>
+
+
+                    </ion-row> -->
+
+                </ion-card>
+
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row *ngIf="search != ''" class='searchResults'>
+            <ion-col no-padding col-12 col-sm-6 col-md-4 col-lg-3 *ngFor="let item of collaborations">
+                <ion-card [class]="classNameForComments(item.commentsCount)">
+                    <ion-item (click)="navigateUser(item.user_id)"  class="ionitemlighter">
+                        <ion-card-title style="width: 80%" [innerHTML]="item.name | divideInLines"></ion-card-title>
+                        <ion-avatar item-start>
+                                <img [hidden]="item.collaboration_image==''" class='search-result-img' [src]="item.collaboration_image">
+                            <!--<img [src]="item.user_image_thumb" class='search-result-img'>-->
+                        </ion-avatar>
+                        <h2>{{item.username}}</h2>
+                        <p>{{item.createdAt|amTimeAgo}}</p>
+                    </ion-item>
+
+                  <!--  <img [hidden]="item.collaboration_image==''" [src]="item.collaboration_image">-->
+                    <ion-item no-margin padding-left class="spiel-count">
+                        <button color="light" ion-button small (click)="navigate(item.id)">
+                            <span style='font-size: 10px;'>Read more</span>
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text" style="font-size: 5px;"></ion-icon><span style='font-size: 10px;'>
+                                &nbsp; {{item.spiels}}
+                            Spiel{{item.spiels!=1?'s':''}}</span>
+                        </button>
+                        <button ion-button small (click)="navigate(item.id)">
+                            <ion-icon name="text"></ion-icon><span style='font-size: 10px;'>&nbsp; {{item.commentsCount}}
+                            comment{{item.commentsCount!=1?'s':''}}</span>
+                        </button>
+                        <button item-end color="light" ion-button small icon-only
+                                (click)="presentPopover($event, item)">
+                            <ion-icon name="more" style="font-size: 5px;"></ion-icon>
+                        </button>
+                       
+                 </ion-item>
+
+
+                 <ion-card-content padding-bottom margin-top margin-left>
+                      
+
+                    <ion-badge style="margin-top: 10px" margin-right margin-top
+                    *ngFor="let kw of item.keywords">{{kw.trim()}}
+         </ion-badge>
+                </ion-card-content> 
+                  
+
+                </ion-card>
+
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event,  false)" *ngIf="key == null">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

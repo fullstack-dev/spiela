@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "172797515074",
+    "firebase_url": "https://cobalt-abacus-125119.firebaseio.com",
+    "project_id": "cobalt-abacus-125119",
+    "storage_bucket": "cobalt-abacus-125119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172797515074:android:3b1a784037818244",
+        "android_client_info": {
+          "package_name": "koifish.yingyan.spiela"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172797515074-8k893hnaui8eqbv5t8hhc329gq6en12l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5kzJ5tHGcTFBRt6ZlJVxsBgWq52Tt9F0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,44 @@
+page-start-collaboration {
+
+	.keys {
+
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width: 400px;
+
+	}
+
+	.key-items {
+
+		margin-right: 10px;
+	    background-color: #007d7d;
+	    color: #ffffff;
+	    padding: 5px;
+	    border-radius: 3px;
+
+	}
+
+    [custom-navbar] .navigation {
+
+        width: 100%;
+        // max-width: 400px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+    }
+
+    [custom-navbar] .navigation-item {
+
+        padding: 5px;
+        color: #ffffff;
+
+    }
+
+    [custom-navbar] .active {
+
+        background-color: #005d56;
+        border-radius: 5px;
+
+    }
+}

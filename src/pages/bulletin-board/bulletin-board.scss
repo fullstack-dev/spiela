@@ -1,0 +1,22 @@
+page-bulletin {
+    span {
+        color:color($colors, "primary");
+    }
+
+    [custom-navbar] .navigation {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    [custom-navbar] .navigation-item {
+        padding: 5px;
+        color: #ffffff;
+    }
+
+    [custom-navbar] .active {
+        background-color: #005d56;
+        border-radius: 5px;
+    }
+}

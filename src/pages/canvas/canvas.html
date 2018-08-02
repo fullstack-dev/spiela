@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Canvas</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="darker">
+        <ion-card-content>
+            <ion-item item-start>
+                <img [src]="'data:image/jpeg;base64,' + curImg"
+                     style="width: 100%">
+                <button ion-button icon-start small (click)="presentActionSheet()">
+                    <ion-icon name="camera"></ion-icon>
+                    Select Image
+                </button>
+            </ion-item>
+
+            <form>
+                <ion-item item-end>
+                    <ion-textarea  [attr.rows]="3" item-end placeholder="Content" #content required autoresize></ion-textarea>
+                </ion-item>
+                <button ion-button block small (click)="addSpiel(content.value)">Post</button>
+            </form>
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>
